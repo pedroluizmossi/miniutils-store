@@ -7,10 +7,12 @@
       "description": "Os processos que mais usam CPU ou memória, com tela e script próprios.",
       "author": "pedroluizmossi",
       "license": "MIT",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "repo": "https://github.com/pedroluizmossi/miniutils-plugin-top-processes",
-      "commit": "c2cb8b6716e31e4238887c4c28158201e9390a7e",
-      "permissions": ["ps"]
+      "commit": "ea1f5087f20cbcad69155d2a99ac6f652eb24181",
+      "permissions": [
+        "ps"
+      ]
     }
   ]
 }
