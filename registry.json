@@ -17,12 +17,12 @@
     {
       "id": "io.github.pedroluizmossi.pulso",
       "name": "Pulso",
-      "description": "CPU ao vivo com gráfico, recorde guardado, o processo culpado nos picos e o IP público.",
+      "description": "Monitor de batimentos da máquina: CPU, RAM, temperatura e rede ao vivo, recorde guardado, o processo culpado nos picos e o IP público.",
       "author": "pedroluizmossi",
       "license": "MIT",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "repo": "https://github.com/pedroluizmossi/miniutils-plugin-pulso",
-      "commit": "fcc22e5dc5cf93facb8e09b696cfa851b4d61291",
+      "commit": "3f9a4b67321fd83df25634207c3aa7bd6a27fd79",
       "permissions": [
         "ps"
       ],
