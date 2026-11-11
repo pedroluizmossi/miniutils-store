@@ -32,6 +32,29 @@
       "uses": [
         "sys"
       ]
+    },
+    {
+      "id": "io.github.pedroluizmossi.repos",
+      "name": "Repositórios",
+      "description": "Seus repositórios Git e o que falta commitar e enviar. A mascote cobra pendência velha e comemora quando tudo foi enviado. Funciona no Linux e no Windows (precisa do git).",
+      "author": "pedroluizmossi",
+      "license": "MIT",
+      "version": "0.1.0",
+      "repo": "https://github.com/pedroluizmossi/miniutils-apps",
+      "path": "repos",
+      "commit": "da97ee1366b6e637ddd041c5c1fd5ed97a9dd87e",
+      "uses": [],
+      "full_access": true,
+      "binaries": {
+        "linux": {
+          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/repos-v0.1.0/repos-linux-x86_64",
+          "sha256": "6df474406028af137ba7d8a924e035abc181a374dafc26df67024c92fdce3b92"
+        },
+        "windows": {
+          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/repos-v0.1.0/repos-windows-x86_64.exe",
+          "sha256": "557faf41272c044569051f49d1f52339661713f227a087ac873fd1784069f3e8"
+        }
+      }
     }
   ]
 }

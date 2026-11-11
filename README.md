@@ -1,7 +1,7 @@
 # Loja de plugins do MiniUtils
 
 Índice dos plugins da comunidade para o [MiniUtils](https://github.com/pedroluizmossi/hub-app-rust),
-o hub de mini-apps para o desktop Linux. Este repositório guarda **só o índice**: cada plugin
+o hub de mini-apps para o desktop (Linux e Windows). Este repositório guarda **só o índice**: cada plugin
 vive no repositório do autor, e o índice aponta para um commit revisado dele.
 
 ## Usar no MiniUtils
@@ -21,7 +21,10 @@ miniutils --loja https://raw.githubusercontent.com/pedroluizmossi/miniutils-stor
 
 O MiniUtils confere a assinatura (`registry.json.sig`) com essa chave e recusa um índice
 adulterado. Na instalação, clona o repositório do plugin, confere que veio exatamente o
-`commit` do índice e mostra o que o plugin vai executar antes de instalar.
+`commit` do índice e mostra o que o plugin vai executar antes de instalar. Num app externo
+(acesso total), baixa também o executável do sistema e só instala se o SHA-256 bater com o
+do índice; a confirmação mostra "ACESSO TOTAL" em destaque. Apps externos precisam do
+MiniUtils 0.2.0 ou mais novo.
 
 ## Enviar um plugin
 
@@ -39,6 +42,22 @@ adulterado. Na instalação, clona o repositório do plugin, confere que veio ex
    - `license`: obrigatória.
 3. Para atualizar, outro pull request trocando `commit` e `version`.
 
+## Enviar um app externo (acesso total)
+
+Um app externo (`[app]` no manifesto) roda um executável próprio com as permissões do
+usuário. Além do que vale para os plugins:
+
+1. O código fica num repositório público, e os executáveis num Release do GitHub,
+   **compilados pelo CI a partir da tag** (nunca enviados de uma máquina pessoal). O
+   [miniutils-apps](https://github.com/pedroluizmossi/miniutils-apps) tem o workflow pronto:
+   uma tag `<app>-v<versão>` gera os executáveis e a entrada do índice (`registry-entry.json`).
+2. A entrada no `registry.json` traz:
+   - `"full_access": true`;
+   - `binaries`: por sistema (`linux`, `windows`), o endereço `https://` do executável e o
+     `sha256` dele. Pode faltar um sistema (a instalação nele avisa que não há versão), mas
+     não pode haver um que o manifesto não declara;
+   - sem `permissions` nem `net`: o app não declara `[permissions]`.
+
 Não assine nada: quem mantém a loja revisa o código daquele commit e assina o índice.
 
 ## O que é revisado
@@ -51,6 +70,16 @@ Não assine nada: quem mantém a loja revisa o código daquele commit e assina o
   especial a quem lê `agents` (os pedidos feitos aos agentes de IA) e tem rede.
 - A tela carrega imagens só de `assets/` (o MiniUtils também confere).
 - Licença livre declarada.
+
+Num app externo, que pode tudo o que o usuário pode:
+
+- O código daquele commit faz só o que o app promete: nada de mandar arquivos ou dados
+  para fora sem motivo claro, baixar e rodar outro programa, mexer fora da própria pasta de
+  dados sem o usuário pedir, ou se esconder (código ofuscado, binário embutido).
+- Os executáveis são os do Release da tag que aponta para esse commit, gerados pelo
+  workflow do repositório (confira a execução no Actions), e os `sha256` do índice são os
+  do Release.
+- Na dúvida, não entra: um plugin com script quase sempre resolve.
 
 ## Para quem mantém
 
