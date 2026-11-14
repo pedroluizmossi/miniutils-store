@@ -70,8 +70,8 @@ verify_index() {
     for id in "${ids[@]}"; do
         echo "== conferindo $id (instalação de teste)"
         rm -rf "$TMP/plugins" "$TMP/data"
-        MINIUTILS_PLUGINS="$TMP/plugins" MINIUTILS_DADOS="$TMP/data" \
-            "$MINIUTILS" --instalar "$id" "$STORE/registry.json" --sim >"$TMP/install.log" 2>&1 \
+        MINIUTILS_PLUGINS="$TMP/plugins" MINIUTILS_DATA="$TMP/data" \
+            "$MINIUTILS" --install "$id" "$STORE/registry.json" --yes >"$TMP/install.log" 2>&1 \
             || { cat "$TMP/install.log"; die "$id não instala a partir deste índice"; }
         echo "   ok"
     done
@@ -80,9 +80,9 @@ verify_index() {
 # Signs, checks the signature with the published public key, commits and pushes.
 sign_and_push() {
     local message=$1
-    "$MINIUTILS" --loja-assinar registry.json "$MINIUTILS_STORE_KEY" >/dev/null
-    MINIUTILS_PLUGINS="$TMP/plugins" "$MINIUTILS" --loja "$STORE/registry.json" --chave "$(tr -d '[:space:]' <store-key.pub)" \
-        | grep -q "assinatura conferida" \
+    "$MINIUTILS" --store-sign registry.json "$MINIUTILS_STORE_KEY" >/dev/null
+    MINIUTILS_PLUGINS="$TMP/plugins" "$MINIUTILS" --store "$STORE/registry.json" --key "$(tr -d '[:space:]' <store-key.pub)" \
+        | grep -qE '\((signature checked|assinatura conferida)\):' \
         || { git checkout -q -- registry.json.sig; die "a assinatura não confere com store-key.pub (chave errada?); nada foi enviado"; }
     git add registry.json registry.json.sig
     git commit -q -m "$message"

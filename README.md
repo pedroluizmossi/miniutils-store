@@ -16,7 +16,7 @@ Em Configurações > **Loja de plugins**, informe:
 Pela linha de comando:
 
 ```sh
-miniutils --loja https://raw.githubusercontent.com/pedroluizmossi/miniutils-store/main/registry.json --chave 070dba03dd19902eeed1d02573272be1fa3fc263f4a8eda3cf10b3beca98464e
+miniutils --store https://raw.githubusercontent.com/pedroluizmossi/miniutils-store/main/registry.json --key 070dba03dd19902eeed1d02573272be1fa3fc263f4a8eda3cf10b3beca98464e
 ```
 
 O MiniUtils confere a assinatura (`registry.json.sig`) com essa chave e recusa um índice
@@ -119,6 +119,6 @@ Recusa PR que mexa em mais do que `registry.json`, mostra o diff, instala cada a
 índice do PR numa pasta descartável e, depois do seu "s", faz o merge exatamente do commit
 conferido, assina no `main` e envia.
 
-À mão, se precisar: `miniutils --loja-assinar registry.json <chave privada>`. O
+À mão, se precisar: `miniutils --store-sign registry.json <chave privada>`. O
 `.gitattributes` impede o git de trocar o fim de linha do `registry.json` (a assinatura
 vale para os bytes exatos do arquivo).
