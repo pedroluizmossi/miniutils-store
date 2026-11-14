@@ -83,8 +83,42 @@ Num app externo, que pode tudo o que o usuário pode:
 
 ## Para quem mantém
 
+Tudo roda na sua máquina: a chave privada nunca sai dela, e não há token nem segredo no
+GitHub. Precisa do `git`, de um `miniutils` com `--store-entry` (no PATH, em `MINIUTILS`
+ou compilado em `../hub-app-rust`) e da variável `MINIUTILS_STORE_KEY` com o caminho da
+chave privada (fora deste repositório).
+
+**Publicar ou atualizar um app** (seu, a partir da tag):
+
 ```sh
-miniutils --loja-assinar registry.json <chave privada>   # depois de aceitar o PR
+export MINIUTILS_STORE_KEY=~/.config/miniutils/loja.key
+tools/publish.sh pedroluizmossi/miniutils-apps repos-v0.2.0      # app externo
+tools/publish.sh pedroluizmossi/miniutils-plugin-pulso v0.3.0    # plugin
+tools/publish.sh dono/repo main --app-version 0.3.0              # sem tag de versão
 ```
 
-A chave privada nunca entra neste repositório.
+O script atualiza o `main` e roda `miniutils --store-entry`, que monta a entrada a partir
+do manifesto daquele commit (id, nome, permissões); num app externo, pega os executáveis do
+`registry-entry.json` do Release da tag, confere que ele saiu do mesmo commit e baixa cada
+executável para conferir o SHA-256. Depois instala o app numa pasta descartável, como um
+usuário instalaria, mostra o diff do índice e o link para comparar o código com a versão
+anterior, e só depois do seu "s" assina, confere a assinatura com `store-key.pub`, faz o
+commit e envia. Permissão nova aparece em destaque.
+
+Opções do `--store-entry`: `--path <pasta>` (sem ela, o prefixo da tag, como `repos` em
+`repos-v0.2.0`, ou a raiz), `--app-version <v>` (quando a tag não termina em `v<versão>`) e
+`--license <SPDX>` (app novo cujo `LICENSE` não seja reconhecido).
+
+**Aceitar um PR** (de outra pessoa):
+
+```sh
+tools/accept.sh 12
+```
+
+Recusa PR que mexa em mais do que `registry.json`, mostra o diff, instala cada app do
+índice do PR numa pasta descartável e, depois do seu "s", faz o merge exatamente do commit
+conferido, assina no `main` e envia.
+
+À mão, se precisar: `miniutils --loja-assinar registry.json <chave privada>`. O
+`.gitattributes` impede o git de trocar o fim de linha do `registry.json` (a assinatura
+vale para os bytes exatos do arquivo).

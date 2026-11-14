@@ -1,0 +1,5 @@
+# The signature covers the exact bytes of registry.json: git must never convert line
+# endings (core.autocrlf on Windows would sign CRLF and publish LF, breaking the signature).
+registry.json -text
+registry.json.sig -text
+*.sh text eol=lf
