@@ -35,24 +35,26 @@
     },
     {
       "id": "io.github.pedroluizmossi.repos",
-      "name": "Repositórios",
-      "description": "Seus repositórios Git e o que falta commitar e enviar. A mascote cobra pendência velha e comemora quando tudo foi enviado. Funciona no Linux e no Windows (precisa do git).",
+      "name": "Repositories",
+      "description": "Your Git repositories and what is left to commit and push, with one-click push and pull, the AI agent working in each one and the GitHub CI. The mascot nags about old pending work and celebrates when everything is pushed. Works on Linux and Windows (needs git; the CI needs gh).",
       "author": "pedroluizmossi",
       "license": "MIT",
-      "version": "0.1.0",
+      "version": "0.3.1",
       "repo": "https://github.com/pedroluizmossi/miniutils-apps",
       "path": "repos",
-      "commit": "da97ee1366b6e637ddd041c5c1fd5ed97a9dd87e",
-      "uses": [],
+      "commit": "53d34a4a4f096a6d17408b0b46211732363c8db2",
+      "uses": [
+        "agents"
+      ],
       "full_access": true,
       "binaries": {
         "linux": {
-          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/repos-v0.1.0/repos-linux-x86_64",
-          "sha256": "6df474406028af137ba7d8a924e035abc181a374dafc26df67024c92fdce3b92"
+          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/repos-v0.3.1/repos-linux-x86_64",
+          "sha256": "87fc7464241abb339342404b75c5a574e4983f3a20e25b143064d0eaebee8b4e"
         },
         "windows": {
-          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/repos-v0.1.0/repos-windows-x86_64.exe",
-          "sha256": "557faf41272c044569051f49d1f52339661713f227a087ac873fd1784069f3e8"
+          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/repos-v0.3.1/repos-windows-x86_64.exe",
+          "sha256": "f09704ab9b76d8ef9bbb037786755cf9a41530a1907856b32a2054250c4087b9"
         }
       }
     }
