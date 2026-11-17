@@ -57,6 +57,28 @@
           "sha256": "f09704ab9b76d8ef9bbb037786755cf9a41530a1907856b32a2054250c4087b9"
         }
       }
+    },
+    {
+      "id": "io.github.pedroluizmossi.codeindex",
+      "name": "Code index",
+      "description": "Watches your code-index server: how many repositories are indexed, pending or in error, the latest sync and the enrichment progress. Search the code from the cell, open a result in the editor and start the next sync batch after a confirmation.",
+      "author": "pedroluizmossi",
+      "license": "MIT",
+      "version": "0.1.0",
+      "repo": "https://github.com/pedroluizmossi/miniutils-apps",
+      "path": "codeindex",
+      "commit": "53d34a4a4f096a6d17408b0b46211732363c8db2",
+      "full_access": true,
+      "binaries": {
+        "linux": {
+          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/codeindex-v0.1.0/codeindex-linux-x86_64",
+          "sha256": "7ce92176e45706bfeafae217f194af7cc83f7ba4cd8f2ae4390f006be13dbd7e"
+        },
+        "windows": {
+          "url": "https://github.com/pedroluizmossi/miniutils-apps/releases/download/codeindex-v0.1.0/codeindex-windows-x86_64.exe",
+          "sha256": "5441e51307a32f2e1c3bda5d799ecc91541e5ff9ff089ce36dd37d6d23fe8db0"
+        }
+      }
     }
   ]
 }
